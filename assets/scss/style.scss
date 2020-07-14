@@ -1,0 +1,577 @@
+$primary: #4a69bd;
+$work-sans: "Work Sans",
+sans-serif;
+
+$theme-colors: (primary: $primary);
+
+@import "../plugins/bootstrap/scss/bootstrap.scss";
+@import "../plugins/font-awesome/scss/font-awesome.scss";
+@import "./fs";
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $work-sans;
+}
+
+section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}
+
+section#home {
+  padding-top: 62px;
+}
+
+.btn {
+  border-radius: 19px;
+}
+
+.f-left {
+  float: left;
+}
+
+.f-right {
+  float: right;
+}
+
+.clear {
+  clear: both;
+}
+
+.text-black {
+  color: $black;
+}
+
+a.text-black {
+  color: $black;
+
+  &:hover {
+    color: $black;
+  }
+
+  &:active {
+    color: $black;
+  }
+}
+
+.nav-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px 0;
+  z-index: 1999;
+  display: block;
+  transition: 0.3s;
+}
+
+.nav-bar.fixed {
+  background-color: $white;
+  position: fixed;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+}
+
+.nav-bar .logo {
+  display: block;
+  color: $primary;
+  line-height: 32px;
+  height: 32px;
+  float: left;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.nav-bar ul.menu {
+  float: right;
+  display: block;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  position: relative;
+}
+
+.nav-bar ul.menu li {
+  display: inline;
+}
+
+.nav-bar ul.menu li a {
+  height: 32px;
+  font-size: 16px;
+  padding: 8.5px 20px;
+  text-decoration: none;
+  color: $black;
+  position: relative;
+
+  &:hover,
+  &.active {
+    color: $primary;
+  }
+}
+
+.nav-bar ul.menu li a:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background-color: $primary;
+  transition: 0.2s;
+  // transition-delay: 0.3s;
+}
+
+.nav-bar ul.menu li a:hover::after,
+.nav-bar ul.menu li a:active::after,
+.nav-bar ul.menu li a.active::after {
+  width: 100%;
+}
+
+.nav-bar .toggle-sidebar {
+  float: right;
+  margin: 7px 0;
+  height: 18px;
+  width: 18px;
+  position: relative;
+  cursor: pointer;
+}
+
+.nav-bar .toggle-sidebar span {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  border-radius: 1px;
+  background-color: #1f2a9d;
+  transition: 0.3s;
+  left: 0;
+}
+
+.nav-bar .toggle-sidebar span:nth-child(1) {
+  top: 0;
+}
+
+.nav-bar .toggle-sidebar span:nth-child(2) {
+  top: calc(50% - 1px);
+}
+
+.nav-bar .toggle-sidebar span:nth-child(3) {
+  bottom: 0;
+}
+
+.nav-bar .toggle-sidebar.active span:nth-child(1) {
+  transform: rotate(45deg);
+  top: calc(50% - 1px);
+  width: 100%;
+}
+
+.nav-bar .toggle-sidebar.active span:nth-child(2) {
+  width: 0;
+}
+
+.nav-bar .toggle-sidebar.active span:nth-child(3) {
+  transform: rotate(-45deg);
+  top: calc(50% - 1px);
+  width: 100%;
+  bottom: 0;
+}
+
+.sidebar {
+  height: 100vh;
+  width: 250px;
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  left: -300px;
+  background-color: $white;
+  transition: 0.3s;
+}
+
+.sidebar.active {
+  left: 0;
+}
+
+.sidebar-bg {
+  height: 150px;
+  width: 100%;
+  background-image: url("../img/1-min.jpg");
+  background-size: cover;
+  background-position-x: center;
+  position: relative;
+  border-radius: 0 0 15px 15px;
+  overflow: hidden;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: $primary;
+    opacity: 0.7;
+  }
+}
+
+.sidebar-bg span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: $white;
+  z-index: 2001;
+  font-size: 62px;
+}
+
+.sidebar-menu {
+  width: calc(100% - 30px);
+  padding: 0;
+  margin: 0 auto;
+  list-style: none;
+}
+
+.sidebar-menu li {
+  width: 100%;
+  margin: 5px 0;
+}
+
+.sidebar-menu li a {
+  padding: 10px 0;
+  font-size: 16px;
+  width: 100%;
+  display: block;
+  text-decoration: none;
+  color: $black;
+  position: relative;
+
+  &.active,
+  &:active,
+  &:hover,
+  &.active {
+    color: $primary;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 0%;
+    background-color: $primary;
+    transition: 0.2s;
+  }
+
+  &.active::after,
+  &:active::after,
+  &:hover::after {
+    width: 100%;
+  }
+}
+
+.close-sidebar {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1999;
+  background-color: $black;
+  opacity: 0.7;
+}
+
+.image {
+  width: 100%;
+}
+
+.image img {
+  width: 100%;
+}
+
+.home .home-heading {
+  background-color: $primary;
+  color: $white;
+  font-size: 21px;
+  padding: 5px 20px;
+  display: inline-block;
+  border-radius: 20.5px 20.5px 20.5px 0;
+}
+
+.image-home {
+  text-align: center;
+  width: 80%;
+  border: 10px solid rgba($color: #000000, $alpha: 0.1);
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.about-skills span {
+  cursor: pointer;
+  margin: 0 15px 15px 0;
+  display: inline-block;
+  padding: 5px 10px;
+  border: 1px solid $primary;
+  border-radius: 6px;
+  transition: 0.3s;
+
+  &:hover {
+    background-color: $primary;
+    color: $white;
+  }
+}
+
+.image-about {
+  position: relative;
+  text-align: right;
+}
+
+.image-about img {
+  width: 90%;
+  display: inline-block;
+  // border-radius: 8px;
+}
+
+.image-about span.year {
+  display: inline-block;
+  position: absolute;
+  font-size: 31px;
+  left: 0;
+  bottom: 0;
+  font-weight: bold;
+}
+
+.image-about .dots {
+  position: absolute;
+  z-index: -1;
+  left: -5%;
+  bottom: -19%;
+  right: 5%;
+  top: 50%;
+  opacity: 0.8;
+  background: url("../img/dots.png") 0 0 repeat;
+}
+
+.skill-quotes {
+  position: relative;
+  padding: 20px;
+}
+
+.skill-quotes .dots {
+  position: absolute;
+  z-index: -1;
+  right: 0%;
+  bottom: -19%;
+  left: 7%;
+  top: 50%;
+  opacity: 0.8;
+  background: url("../img/dots.png") 0 0 repeat;
+}
+
+.experience-info {
+  position: absolute;
+  left: 12%;
+  top: 80%;
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 1.57rem;
+  text-align: left !important;
+}
+
+.experience-info .number {
+  display: inline-block;
+  font-weight: 600;
+  line-height: 1;
+  font-size: 160px;
+}
+
+.experience-info .text {
+  display: inline-block;
+  font-size: 21px;
+  font-weight: 600;
+  line-height: 1.181;
+  text-transform: uppercase;
+}
+
+.top-toggle {
+  display: none;
+  height: 40px;
+  width: 40px;
+  border-radius: 8px;
+  background-color: $primary;
+  color: $white !important;
+  text-align: center;
+  line-height: 40px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  cursor: pointer;
+  text-decoration: none;
+  z-index: 1998;
+}
+
+.hobby a {
+  padding: 0 10px 10px 0;
+  text-decoration: none;
+  color: rgba($color: #000000, $alpha: 0.45);
+}
+
+.progress-bar {
+  width: 0;
+  transition: 1s;
+}
+
+.education {
+  width: 100%;
+  padding: 40px;
+}
+
+.education-wrapper {
+  margin-left: 10px;
+  padding-left: 40px;
+  border-left: 2px solid $primary;
+  position: relative;
+}
+
+.education-card {
+  position: relative;
+
+  &:not(:last-child) {
+    margin-bottom: 40px;
+  }
+}
+
+.education-card::after {
+  content: "";
+  background-color: $white;
+  position: absolute;
+  left: -51px;
+  top: 0;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  border: 4px solid $primary;
+}
+
+.team-card-inner {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.team-card-inner .card,
+.portfolio-inner .card {
+  width: calc(100% - 20px);
+  text-decoration: none;
+  color: $black;
+  margin: 10px;
+  position: relative;
+  border-radius: $border-radius;
+}
+
+.portfolio-inner .card {
+  border: none;
+  overflow: hidden;
+}
+
+.portfolio-inner .card .portfolio-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  overflow: hidden;
+  transition: 0.3s;
+  background-color: $primary;
+  opacity: 0.8;
+}
+
+.portfolio-inner .card .portfolio-info p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: block;
+  margin: 0;
+  color: $white;
+  opacity: 1;
+  width: 85%;
+  text-align: center;
+}
+
+.portfolio-inner .card:hover .portfolio-info {
+  height: 100%;
+}
+
+.footer {
+  background: url("../img/dots.png") 0 0 repeat;
+}
+
+@include media-breakpoint-up(md) {
+
+  .team-card-inner .card,
+  .portfolio-inner .card {
+    width: calc(50% - 20px);
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .team-card-inner .card {
+    width: calc(25% - 20px);
+  }
+
+  .portfolio-inner .card {
+    width: calc((100% / 3) - 20px);
+  }
+}
+
+.full-view-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: none;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 3000 !important;
+  cursor: pointer;
+
+  &.active {
+    display: block;
+  }
+
+  img {
+    display: block;
+    margin: 30px auto;
+    width: 90%;
+    animation-name: opacity-keyframes;
+    animation-duration: 1s;
+  }
+}
+
+@keyframes opacity-keyframes {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@media (min-width: 768px) {
+  .full-view-image img {
+    width: 55%;
+  }
+}
+
+@media (min-width: 992px) {
+  .full-view-image img {
+    width: 60%;
+  }
+}
